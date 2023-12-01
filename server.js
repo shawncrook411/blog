@@ -3,6 +3,7 @@ const path = require('path')
 const express = require('express')
 const session = require('express-session')
 const exphbs = require('express-handlebars')
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
 const routes = require('./controllers')
 const helpers = require('./utils/helpers')
@@ -12,13 +13,17 @@ const sequelize = require('./config/connection')
 const app = express()
 const PORT = process.env.PORT || 3001
 
-const cookieSession = {
-    secret: '0',
-    resave: false,
-    saveUninitialized: false,
-}
+// const cookieSession = {
+//     secret: '0',
+//     cooke: {},
+//     resave: false,
+//     saveUninitialized: true,
+//     store: new SequelizeStore({
+//         db: sequelize,
+//     }),
+// }
 
-app.use(session(cookieSession))
+// app.use(session(cookieSession))
 
 const hbs = exphbs.create({ helpers })
 

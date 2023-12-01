@@ -4,18 +4,29 @@
     <head>
         <meta charset="utf-8">
         <title>BLOG!</title>
-        <link rel="stylesheet" href="public\css\style.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
     </head>
 
     <body>
         <header>
-            <h1>Welcome to the blog</h1>
+            <nav>
+                <a href="/" class="navButton border" id="homeButton">Home</a>
+                <a href="/dashboard" class="navButton border" id="dashboardButton">Dashboard</a>
+                {{#if loggedIn}}
+                <button id="logout" class="navButton border">Logout</button>
+                {{else}}
+                <a href="/login" class="navButton border" id="loginButton">Login</a>
+                {{/if}}
+            </nav>
+            <div class="border" id="titleDiv">
+                <h1>Welcome to the Blog!</h1>
+            </div>
         </header>
-        <main>
-            <h2>Blog!</h2>
+        <main class="border">
             <div class="blog">
                 {{{body}}}
             </div>
         </main>
+        <script src="/js/script.js"></script>
     </body>
 </html>

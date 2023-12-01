@@ -1,0 +1,85 @@
+:root{
+    --color1: #0c243c;
+    --color2: #c9d1d5;
+    --color3: #55c2c3;
+    --color4: #7e8c9c;
+}
+
+body {
+    background-color: var(--color1);
+    color: var(--color3);
+
+}
+
+.border{
+    border: 3px solid var(--color4);
+    border-radius: 10px;    
+}
+
+main {
+    margin: 10px;
+    padding: 10px;
+    min-height: 500px;
+}
+
+header, footer {
+    padding: 10px;
+}
+
+nav{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navButton{
+    display: inline;
+    padding: 10px;
+    margin: 0px 10px;
+}
+
+#titleDiv{
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-style: bolder;
+}
+
+/* Disables Nav Button Decorations */
+a:link {text-decoration: none;}
+a {color: currentColor;}
+a {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* Login Module Formatting */
+#loginDiv{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+#loginDiv h2{
+    margin: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+}
+
+.labelDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 3px solid var(--color4);
+    border-radius: 10px;  
+
+    padding: 15px;
+    margin: 10px;
+
+    height: 70px;
+}
