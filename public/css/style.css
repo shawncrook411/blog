@@ -44,6 +44,23 @@ nav{
     font-style: bolder;
 }
 
+#homepageDiv{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    text-align: center;
+    align-items: center;
+}
+
+#homepageTitle{
+       font-size: 50px; 
+}
+
+#techImg{
+    height: 183px;
+    width: 275px;
+}
+
 /* Disables Nav Button Decorations */
 a:link {text-decoration: none;}
 a {color: currentColor;}
