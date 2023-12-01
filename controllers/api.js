@@ -48,15 +48,32 @@ router.get('/dashboard', async (req, res) => {
         const blogs = await BlogPost.findAll({
             include: [{ model: User, attributes: []}]
         })       
+
+        blogsData = blogs.map((blog) => 
+            blog.get({ plain: true}))
         
         res.render('dashboard', {
-            blogs,
+            blogsData,
             // loggedIn: req.session.loggedIn
             loggedIn,
         })
         
     } catch (err) {
         console.log(err)
+        res.status(500).json(err)
+    }
+})
+
+//Dev Test Route
+router.get('/dashboardTest' , async (req, res) => {
+    try{
+        const blogData = await BlogPost.findAll({
+            include: [{ model: User, attributes: []}]
+        })
+
+        res.json(blogData).status(200)
+    } catch (err) {
+        console.log (err)
         res.status(500).json(err)
     }
 })

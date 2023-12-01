@@ -105,3 +105,19 @@ form {
     color: black;
     background-color: var(--color4)
 }
+
+/* BLOGPOST PARTIAL STYLING */
+.blogpost{
+    margin: 15px 5px;
+    padding: 5px;
+    padding-left: 25px;
+}
+
+.blogpost_header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.blogpost_title{
+    border-bottom: 3px solid var(--color4);
+}
