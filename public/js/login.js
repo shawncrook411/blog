@@ -1,4 +1,4 @@
-window.alert('login')
+
 
 const login = async (event) => {
     event.preventDefault()
@@ -44,14 +44,6 @@ const signUp = async (event) => {
         }
     }
 }
-
-const alternate = async (event) => {
-    event.preventDefault()
-
-    document.location.replace('/signup')
-}
-
-document.querySelector('#sign_alternate').addEventListener('click', alternate)
 
 document.querySelector('#login-form').addEventListener('submit', login)
 document.querySelector('#signup-form').addEventListener('submit', signUp)
