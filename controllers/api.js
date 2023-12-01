@@ -11,6 +11,14 @@ router.get('/', async (req, res) => {
 })
 
 
+router.get('/logout', async (req, res) => {
+    try{
+
+    } catch(err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
 
 router.get('/login', async (req, res) => {
     try{
@@ -18,7 +26,10 @@ router.get('/login', async (req, res) => {
         res.render('login', {
             loggedIn,
         })
-    } catch(err) {}
+    } catch(err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
 })
 
 router.get('/signup', async (req, res) => {
@@ -29,7 +40,6 @@ router.get('/signup', async (req, res) => {
         })
     } catch(err) {}
 })
-
 
 router.get('/dashboard', async (req, res) => {
     try{
@@ -45,6 +55,44 @@ router.get('/dashboard', async (req, res) => {
         })
         
     } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
+router.post('/createAccount', async (req, res) => {
+    try{
+        const newUserName = req.body.username
+        const newPassword = req.body.password
+
+        const userData = await User.findOne({ where: { username: newUserName }})
+        if (userData){
+            res.status(409).json('Username already exists')
+            return
+        }
+
+        await User.create({
+            username: newUserName,
+            password: newPassword
+        }).then(
+            (newUser) => {
+                res.status(200).json(`New User Created with ID: ${newUser.id} and Username: ${newUser.username} `)
+            }
+        )
+
+    } catch(err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
+
+router.post('/login', async (req, res) => {
+    try{
+       
+
+
+    } catch(err) {
         console.log(err)
         res.status(500).json(err)
     }

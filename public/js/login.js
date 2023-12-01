@@ -6,7 +6,7 @@ const login = async (event) => {
     const username = document.querySelector('#username').value.trim()
     const password = document.querySelector('#password').value.trim()
 
-    if (username && password) {
+    if (username && password.length >= 8) {
         const response = await fetch('', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
