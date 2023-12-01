@@ -60,6 +60,20 @@ router.get('/dashboard', async (req, res) => {
     }
 })
 
+//Dev Test Route
+router.get('/users', async (req, res) => {
+    try{
+        const userData = await User.findAll({
+            include: [{ model: BlogPost, attributes: []}]
+        })
+
+        res.json(userData).status(200)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
 router.post('/createAccount', async (req, res) => {
     try{
         const newUserName = req.body.username

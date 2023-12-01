@@ -6,7 +6,7 @@ const login = async (event) => {
     const username = document.querySelector('#username').value.trim()
     const password = document.querySelector('#password').value.trim()
 
-    if (username && password.length >= 8) {
+    if (username && password) {
         const response = await fetch('', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
@@ -29,8 +29,8 @@ const signUp = async (event) => {
     const password = document.querySelector('#password').value.trim()
     const confirm = document.querySelector('#confirm').value.trim()
 
-    if (username && password && password === confirm) {
-        const response = await fetch('', {
+    if (username && password.length >=8 && password === confirm) {
+        const response = await fetch('createAccount', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json'}
@@ -38,12 +38,15 @@ const signUp = async (event) => {
     
         if (response.ok) {
             alert('Signup successful')
-            document.location.replace('/')
+            document.location.replace('/login')
         } else {
-            alert('Signup Failure')
+            alert(response)
         }
     }
 }
 
-document.querySelector('#login-form').addEventListener('submit', login)
-document.querySelector('#signup-form').addEventListener('submit', signUp)
+if(document.location.pathname === '/login' ) 
+    { document.querySelector('#login-form' ).addEventListener('submit', login ) }
+
+if(document.location.pathname === '/signup') 
+    { document.querySelector('#signup-form').addEventListener('submit', signUp) }
