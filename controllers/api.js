@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { BlogPost, User } = require('../models/index')
+const bcrypt = require('bcrypt')
 
 router.get('/', async (req, res) => {
     try {
@@ -103,8 +104,26 @@ router.post('/createAccount', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try{
-       
+       const username = req.body.username
+       const password = req.body.password
 
+        const userData = await User.findOne({ where: { username: username }})
+        if (!userData) {
+            res.status(404).json({ message: 'Login Failure'})
+            return
+        }
+
+        const validPassword = await bcrypt.compare(
+            password,
+            userData.password
+        )
+
+        if(!validPassword) {
+            res.status(400).json({ message: 'Login Failure'})
+            return
+        }
+
+        res.status(200).json({ message: 'Login successful' })
 
     } catch(err) {
         console.log(err)
