@@ -83,3 +83,8 @@ form {
 
     height: 70px;
 }
+
+.button {
+    color: black;
+    background-color: var(--color4)
+}

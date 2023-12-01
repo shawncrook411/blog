@@ -3,33 +3,45 @@ const { BlogPost, User } = require('../models/index')
 
 router.get('/', async (req, res) => {
     try {
-        res.render('homepage')
+        let loggedIn = true
+        res.render('homepage'), {
+            loggedIn,
+        }
     } catch(err) {}
 })
+
+
 
 router.get('/login', async (req, res) => {
     try{
-        res.render('login')
+        let loggedIn = false
+        res.render('login', {
+            loggedIn,
+        })
     } catch(err) {}
 })
 
+router.get('/signup', async (req, res) => {
+    try{
+        let loggedIn = false
+        res.render('signup', {
+            loggedIn,
+        })
+    } catch(err) {}
+})
+
+
 router.get('/dashboard', async (req, res) => {
     try{
+        let loggedIn = true
         const blogs = await BlogPost.findAll({
             include: [{ model: User, attributes: []}]
-        })
-        
-        console.log(blogs)
-        
-        
-        
-        
-        
-        
+        })       
         
         res.render('dashboard', {
             blogs,
             // loggedIn: req.session.loggedIn
+            loggedIn,
         })
         
     } catch (err) {
