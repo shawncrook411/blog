@@ -1,2 +1,4 @@
 
-document.getElementById('')
+document.getElementById('#logoutButton', () => {
+    console.log('test')
+})

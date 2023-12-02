@@ -63,10 +63,15 @@ nav{
 
 /* Disables Nav Button Decorations */
 a:link {text-decoration: none;}
-a {color: currentColor;}
-a {
+a, #logoutButton {color: currentColor;}
+a, #logoutButton {
     font-size: 25px;
     font-weight: bold;
+}
+
+#logoutButton {
+    background-color: var(--color1);
+    font-family: inherit;
 }
 
 /* Login Module Formatting */

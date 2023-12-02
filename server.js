@@ -13,17 +13,17 @@ const sequelize = require('./config/connection')
 const app = express()
 const PORT = process.env.PORT || 3001
 
-// const cookieSession = {
-//     secret: '0',
-//     cooke: {},
-//     resave: false,
-//     saveUninitialized: true,
-//     store: new SequelizeStore({
-//         db: sequelize,
-//     }),
-// }
+const cookieSession = {
+    secret: '0',
+    cooke: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize,
+    }),
+}
 
-// app.use(session(cookieSession))
+app.use(session(cookieSession))
 
 const hbs = exphbs.create({ helpers })
 

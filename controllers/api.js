@@ -4,28 +4,26 @@ const bcrypt = require('bcrypt')
 
 router.get('/', async (req, res) => {
     try {
-        let loggedIn = true
-        res.render('homepage'), {
-            loggedIn,
-        }
+        const blogs = await BlogPost.findAll({
+            include: [{ model: User, attributes: []}]
+        })       
+
+        blogsData = blogs.map((blog) => 
+            blog.get({ plain: true}))
+        
+        res.render('homepage', {
+            blogsData,
+            loggedIn: req.session.loggedIn,
+        })
     } catch(err) {}
 })
 
 
-router.get('/logout', async (req, res) => {
-    try{
-
-    } catch(err) {
-        console.log(err)
-        res.status(500).json(err)
-    }
-})
 
 router.get('/login', async (req, res) => {
     try{
-        let loggedIn = false
         res.render('login', {
-            loggedIn,
+            loggedIn: req.session.loggedIn,
         })
     } catch(err) {
         console.log(err)
@@ -35,17 +33,17 @@ router.get('/login', async (req, res) => {
 
 router.get('/signup', async (req, res) => {
     try{
-        let loggedIn = false
         res.render('signup', {
-            loggedIn,
+            loggedIn: req.session.loggedIn
         })
     } catch(err) {}
 })
 
 router.get('/dashboard', async (req, res) => {
     try{
-        let loggedIn = true
+        console.log(req.session)
         const blogs = await BlogPost.findAll({
+            where: { username: req.session.username },
             include: [{ model: User, attributes: []}]
         })       
 
@@ -54,8 +52,7 @@ router.get('/dashboard', async (req, res) => {
         
         res.render('dashboard', {
             blogsData,
-            // loggedIn: req.session.loggedIn
-            loggedIn,
+            loggedIn: req.session.loggedIn,
         })
         
     } catch (err) {
@@ -118,7 +115,6 @@ router.post('/createAccount', async (req, res) => {
     }
 })
 
-
 router.post('/login', async (req, res) => {
     try{
        const username = req.body.username
@@ -140,12 +136,26 @@ router.post('/login', async (req, res) => {
             return
         }
 
-        res.status(200).json({ message: 'Login successful' })
+        req.session.save( () => {
+            req.session.loggedIn = true
+            req.username = username
+            res.status(200).json({ message: 'Login successful' })
+        })
 
     } catch(err) {
         console.log(err)
         res.status(500).json(err)
     }
+})
+
+router.post('/logout', async (req, res) => {    
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end()
+        })
+    } else {
+        res.status(404).end()
+    }    
 })
 
 module.exports = router
