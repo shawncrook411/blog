@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt')
 router.get('/', async (req, res) => {
     try {
         const blogs = await BlogPost.findAll({
-            include: [{ model: User, attributes: []}]
+            order: ['id'],
+            include: [{ model: User }, { model: Comment }]
         })       
 
         blogsData = blogs.map((blog) => 
@@ -46,8 +47,9 @@ router.get('/dashboard', async (req, res) => {
         }
 
         const blogs = await BlogPost.findAll({
+            order: ['id'],
             where: { user_id: req.session.user_id },
-            include: [{ model: User, model: Comment, attributes: []}]
+            include: [{ model: User}, { model: Comment }]
         })       
 
         blogsData = blogs.map((blog) => 
@@ -58,6 +60,26 @@ router.get('/dashboard', async (req, res) => {
             loggedIn: req.session.loggedIn,
         })
         
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
+router.get('/blog/:id', async (req, res) => {
+    try{
+        const blog = await BlogPost.findAll({
+            where: { id: req.params.id },
+            include: [{ model: User}, { model: Comment }]
+        })
+
+        blogData = blog.map((post) =>
+            post.get({ plain: true}))
+
+        res.render('blogpost', {
+            blogData,
+            loggedIn: req.session.loggedIn
+        })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
@@ -109,7 +131,7 @@ router.get('/dashboardTestComment' , async (req, res) => {
 router.get('/users', async (req, res) => {
     try{
         const userData = await User.findAll({
-            include: [{ model: BlogPost }],
+            include: [{ model: BlogPost }, { model: Comment }],
         })
 
         res.json(userData).status(200)
@@ -189,17 +211,32 @@ router.post('/logout', async (req, res) => {
     }    
 })
 
-router.post('createPost', async (req, res) => {
+router.post('/createPost', async (req, res) => {
     if (!req.session.loggedIn) {
         res.redirect('/login')
         return
     }
 })
 
-router.post('createComment', async (req, res) => {
-    if (!req.session.loggedIn) {
-        res.redirect('/login')
-        return
+router.post('/blog/:id/createComment', async (req, res) => {
+    try {
+        if (!req.session.loggedIn) {
+            res.redirect('/login')
+            return
+        }
+
+        Comment.create({
+            title: req.body.title,
+            text: req.body.text,
+            post_id: req.params.id,
+            user_id: req.session.user_id,
+        }).then((newComment) => {
+            res.json(newComment).status(200)
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
     }
 })
 

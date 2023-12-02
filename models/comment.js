@@ -35,7 +35,11 @@ Comment.init(
         date: {
             type: DataTypes.DATEONLY,
             defaultValue: DataTypes.NOW,
-        }        
+        },        
+        time: {
+            type: DataTypes.TIME,
+            defaultValue: DataTypes.NOW
+        }
     },
     {
         sequelize,

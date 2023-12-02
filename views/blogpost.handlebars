@@ -1,0 +1,34 @@
+{{#each blogData as |blog|}}
+<section class="blogpost border">
+        <div class="blogpost_header">
+            <h2 class="blogpost_title">{{title}}</h2>
+            <p>{{date}}</p>
+        </div>
+        <div>
+            <p>{{text}}</p>
+        </div>
+</section>
+    {{#each comments as |comment|}}
+    {{> comment}}
+    {{/each}}
+{{/each}}
+
+{{#if loggedIn}}
+<section class="comment borderSmall">
+    <form id="newComment">
+        <h3> New Comment</h3>        
+        <div class="commentDiv">
+            <label for="commentTitle">Title:</label>
+            <input type="text" id="commentTitle" name="commentTitle"><br>
+        </div>
+        <div class="commentDiv">
+            <label for="commentText">Text:</label>
+            <textarea type="text" id="commentText" name="commentText"></textarea><br>
+        </div>
+        <input class="button" type="submit" value="Submit">
+    </form>
+</section>
+<script src="../js/comment.js"></script>
+{{else}}
+<p>Want to leave a comment? Sign in!</p>
+{{/if}}

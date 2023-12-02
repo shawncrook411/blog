@@ -16,6 +16,11 @@ body {
     border-radius: 10px;    
 }
 
+.borderSmall{
+    border: 1px solid var(--color4);
+    border-radius: 10px;    
+}
+
 main {
     margin: 10px;
     padding: 10px;
@@ -116,6 +121,7 @@ form {
     margin: 15px 5px;
     padding: 5px;
     padding-left: 25px;
+    padding-right: 10px;
 }
 
 .blogpost_header{
@@ -126,3 +132,40 @@ form {
 .blogpost_title{
     border-bottom: 3px solid var(--color4);
 }
+
+/* COMMENT PARTIAL STYLING */
+.comment{
+    margin: 15px 5px;
+    padding-left: 25px;
+    padding-right: 10px;
+    color: var(--color4);
+}
+
+.comment_header{
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}
+
+#commentTitle{
+    width: 20vw;
+    background-color: var(--color2);
+    height: 25px;
+}
+
+#commentText{
+    width: 80vw;
+    background-color: var(--color2);
+
+}
+
+.commentDiv{
+    padding: 10px;
+    padding-left: 50px;
+    font-size: 125%;
+}
+
+#newComment{
+    display: block;
+}
+

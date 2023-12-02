@@ -18,6 +18,10 @@ const seedDatabase = async () => {
             username: 'test_user_3',
             password: 'test1234'
         },
+        {
+            username: 'shawn',
+            password: '$2b$10$rjuel.qGXi60RSjTQuEUYu5FuwhZGUgKSVMcwYLPWEyWyixLGdJA2'
+        }
     ])
 
     await BlogPost.bulkCreate([
