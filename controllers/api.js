@@ -168,4 +168,18 @@ router.post('/logout', async (req, res) => {
     }    
 })
 
+router.post('createPost', async (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/login')
+        return
+    }
+})
+
+router.post('createComment', async (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/login')
+        return
+    }
+})
+
 module.exports = router

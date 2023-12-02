@@ -1,4 +1,4 @@
-const { BlogPost, User } = require('../models/index')
+const { BlogPost, User, Comment } = require('../models/index')
 const sequelize = require('../config/connection.js')
 
 
@@ -43,6 +43,34 @@ const seedDatabase = async () => {
         },
         {
             user_id: '3',
+            title: 'test_title_5',
+            text: 'test text area number 5',
+        },
+    ])
+
+    await Comment.bulkCreate([
+        {
+            post_id: '1',
+            title: 'test_title_1',
+            text: 'test text area number 1',
+        },
+        {
+            post_id: '1',
+            title: 'test_title_2',
+            text: 'test text area number 2',
+        },
+        {
+            post_id: '2',
+            title: 'test_title_3',
+            text: 'test text area number 3',
+        },
+        {
+            post_id: '2',
+            title: 'test_title_4',
+            text: 'test text area number 4',
+        },
+        {
+            post_id: '3',
             title: 'test_title_5',
             text: 'test text area number 5',
         },
