@@ -18,8 +18,6 @@ router.get('/', async (req, res) => {
     } catch(err) {}
 })
 
-
-
 router.get('/login', async (req, res) => {
     try{
         res.render('login', {
@@ -43,7 +41,7 @@ router.get('/dashboard', async (req, res) => {
     try{
         console.log(req.session)
         const blogs = await BlogPost.findAll({
-            where: { username: req.session.username },
+            where: { user_id: req.session.user_id },
             include: [{ model: User, attributes: []}]
         })       
 
@@ -64,13 +62,19 @@ router.get('/dashboard', async (req, res) => {
 //Dev Test Route
 router.get('/dashboardTest' , async (req, res) => {
     try{
-        const blogData = await BlogPost.findAll({
+        
+        const blogs = await BlogPost.findAll({
+            where: { user_id: 'shawn' },
             include: [{ model: User, attributes: []}]
-        })
+        })       
 
-        res.json(blogData).status(200)
+        blogsData = blogs.map((blog) => 
+            blog.get({ plain: true}))
+        
+        res.json(blogsData)
+        
     } catch (err) {
-        console.log (err)
+        console.log(err)
         res.status(500).json(err)
     }
 })
@@ -138,7 +142,8 @@ router.post('/login', async (req, res) => {
 
         req.session.save( () => {
             req.session.loggedIn = true
-            req.username = username
+            req.session.username = username
+            req.session.user_id = userData.id
             res.status(200).json({ message: 'Login successful' })
         })
 
