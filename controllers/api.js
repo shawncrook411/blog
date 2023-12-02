@@ -39,7 +39,12 @@ router.get('/signup', async (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     try{
-        console.log(req.session)
+        if(!req.session.loggedIn)
+        {
+          res.redirect('/login')
+          return  
+        }
+
         const blogs = await BlogPost.findAll({
             where: { user_id: req.session.user_id },
             include: [{ model: User, attributes: []}]
