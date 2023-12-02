@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { BlogPost, User } = require('../models/index')
+const { BlogPost, User, Comment } = require('../models/index')
 const bcrypt = require('bcrypt')
 
 router.get('/', async (req, res) => {
@@ -47,7 +47,7 @@ router.get('/dashboard', async (req, res) => {
 
         const blogs = await BlogPost.findAll({
             where: { user_id: req.session.user_id },
-            include: [{ model: User, attributes: []}]
+            include: [{ model: User, model: Comment, attributes: []}]
         })       
 
         blogsData = blogs.map((blog) => 
@@ -69,8 +69,8 @@ router.get('/dashboardTest' , async (req, res) => {
     try{
         
         const blogs = await BlogPost.findAll({
-            where: { user_id: 'shawn' },
-            include: [{ model: User, attributes: []}]
+            // where: { user_id: 'shawn' },
+            include: [{ model: User }, { model: Comment }]
         })       
 
         blogsData = blogs.map((blog) => 
@@ -85,10 +85,31 @@ router.get('/dashboardTest' , async (req, res) => {
 })
 
 //Dev Test Route
+router.get('/dashboardTestComment' , async (req, res) => {
+    try{
+        
+        const blogs = await Comment.findAll({
+            // where: { user_id: 'shawn' },
+            include: [{ model: User },{ model: BlogPost }]
+        })       
+
+        blogsData = blogs.map((blog) => 
+            blog.get({ plain: true}))
+        
+        res.json(blogsData)
+        
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
+
+//Dev Test Route
 router.get('/users', async (req, res) => {
     try{
         const userData = await User.findAll({
-            include: [{ model: BlogPost, attributes: []}]
+            include: [{ model: BlogPost }],
         })
 
         res.json(userData).status(200)
