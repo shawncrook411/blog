@@ -212,9 +212,23 @@ router.post('/logout', async (req, res) => {
 })
 
 router.post('/createPost', async (req, res) => {
-    if (!req.session.loggedIn) {
-        res.redirect('/login')
-        return
+    try {
+        if (!req.session.loggedIn) {
+            res.redirect('/login')
+            return
+        }
+
+        BlogPost.create({
+            title: req.body.title,
+            text: req.body.text,
+            user_id: req.session.user_id
+        }).then((newBlog) => {
+            res.status(200).json(newBlog)
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
     }
 })
 
