@@ -135,62 +135,6 @@ router.get('/myComment/:id', async (req, res) => {
     }
 })
 
-
-//Dev Test Route
-router.get('/dashboardTest' , async (req, res) => {
-    try{
-        
-        const blogs = await BlogPost.findAll({
-            // where: { user_id: 'shawn' },
-            include: [{ model: User }, { model: Comment }]
-        })       
-
-        blogsData = blogs.map((blog) => 
-            blog.get({ plain: true}))
-        
-        res.json(blogsData)
-        
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
-    }
-})
-
-//Dev Test Route
-router.get('/dashboardTestComment' , async (req, res) => {
-    try{
-        
-        const blogs = await Comment.findAll({
-            // where: { user_id: 'shawn' },
-            include: [{ model: User },{ model: BlogPost }]
-        })       
-
-        blogsData = blogs.map((blog) => 
-            blog.get({ plain: true}))
-        
-        res.json(blogsData)
-        
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
-    }
-})
-
-
-//Dev Test Route
-router.get('/users', async (req, res) => {
-    try{
-        const userData = await User.findAll({
-            include: [{ model: BlogPost }, { model: Comment }],
-        })
-
-        res.json(userData).status(200)
-    } catch (err) {
-        console.log(err)
-        res.status(500).json(err)
-    }
-})
-
 router.post('/createAccount', async (req, res) => {
     try{
         const newUserName = req.body.username

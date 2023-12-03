@@ -43,7 +43,3 @@ sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now Listening on PORT: ${PORT}`))
 })
 
-//TO DO
-
-//Organize routes 
-//Consolidate views where possible
