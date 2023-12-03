@@ -1,13 +1,15 @@
 <section class="comment borderSmall">
-    <div class="comment_header">
-        <h2 class="comment_title">{{title}}</h2>
-        <div>
-            <p>{{date}}</p>
-            <p>{{user.username}}</p>
+    <a class="commentAnchor" data-id="{{id}}">
+        <div class="comment_header">
+            <h2 class="comment_title">{{title}}</h2>
+            <div>
+                <p>{{date}}</p>
+                <p>{{user.username}}</p>
+            </div>
         </div>
-    </div>
-    <div>
-        <p>{{text}}</p>
-    </div>
+        <div>
+            <p>{{text}}</p>
+        </div>
+    </a>
 </section>
 

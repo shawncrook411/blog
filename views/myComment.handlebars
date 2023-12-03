@@ -1,0 +1,18 @@
+
+<section class="comment borderSmall">
+    <form id="update-blog-form">
+    <div class="comment_header">
+            <h2 contenteditable="true" id="editTitle" class="comment_title">{{commentData.title}}</h2>
+            <div>
+                <p>{{commentData.date}}</p>
+                <p>{{commentData.user.username}} </p>
+            </div>
+        </div>
+        <div>
+            <p id="editText" contenteditable="true">{{commentData.text}}</p>
+        </div>
+        <input class="button" type="submit" value="Submit">
+    </form>
+    <script src="../js/myComment.js"></script>
+</section>
+

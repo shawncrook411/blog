@@ -44,9 +44,10 @@ sequelize.sync({ force: false }).then(() => {
 
 //TO DO
 
-//Ensure that dashboard loads properly
+//Add update option to comments
 //check if new blog post works
 //Add delete option to dashboard
-//Add update option to dashboard
 //check idle time
 //Ensure consistant styling / sizing
+//Organize routes 
+//Consolidate views where possible

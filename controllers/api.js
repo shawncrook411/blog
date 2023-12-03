@@ -106,10 +106,7 @@ router.get('/blog/:id', async (req, res) => {
 router.get('/myBlog/:id', async (req, res) => {
     try{
         const blog = await BlogPost.findByPk(req.params.id)
-
-        if(!blog){
-
-        }
+        
         blogData = blog.get({ plain: true})
 
         res.render('myPost', {
@@ -121,6 +118,23 @@ router.get('/myBlog/:id', async (req, res) => {
         res.status(500).json(err)
     }
 })
+
+router.get('/myComment/:id', async (req, res) => {
+    try{
+        const comment = await Comment.findByPk(req.params.id)
+        
+        commentData = comment.get({ plain: true})
+
+        res.render('myComment', {
+            commentData,
+            loggedIn: req.session.loggedIn
+        })        
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
 
 //Dev Test Route
 router.get('/dashboardTest' , async (req, res) => {
@@ -304,5 +318,21 @@ router.put('/myBlog/:id/updatePost', (req, res) => {
         res.json(updatedPost)
     })
 })
+
+router.put('/myComment/:id/updateComment', (req, res) => {
+    Comment.update(
+        {
+            title: req.body.title,
+            text: req.body.text,
+        },
+        {
+            where: { id: req.params.id },
+        }
+    )
+    .then((updatedComment) => {
+        res.json(updatedComment)
+    })
+})
+
 
 module.exports = router
