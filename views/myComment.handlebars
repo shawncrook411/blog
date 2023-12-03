@@ -1,8 +1,8 @@
 
 <section class="comment borderSmall">
     <form id="update-blog-form">
-    <div class="comment_header">
-            <h2 contenteditable="true" id="editTitle" class="comment_title">{{commentData.title}}</h2>
+        <div class="comment_header">
+            <h3 contenteditable="true" id="editTitle" class="comment_title">{{commentData.title}}</h3>
             <div>
                 <p>{{commentData.date}}</p>
                 <p>{{commentData.user.username}} </p>
@@ -13,8 +13,7 @@
         </div>
         <input class="button" type="submit" value="Submit">
     </form>
-    <button id="delete-comment">Delete</button> 
-
+    <button class="button" id="delete-comment">Delete</button>
     <script src="../js/myComment.js"></script>
 </section>
 

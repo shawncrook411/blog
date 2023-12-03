@@ -15,8 +15,9 @@ const PORT = process.env.PORT || 3001
 
 const cookieSession = {
     secret: '0',
-    cooke: {
-        maxAge: 3
+    cookie: {
+        maxAge: 1000 * 60 * 30
+        //Valid session : 30 minutes
     },
     resave: false,
     saveUninitialized: true,
@@ -44,9 +45,5 @@ sequelize.sync({ force: false }).then(() => {
 
 //TO DO
 
-//check if new blog post works
-//Add delete option to dashboard
-//check idle time
-//Ensure consistant styling / sizing
 //Organize routes 
 //Consolidate views where possible

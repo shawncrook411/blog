@@ -261,7 +261,7 @@ router.post('/logout', async (req, res) => {
     }    
 })
 
-router.post('/createPost', async (req, res) => {
+router.post('/newPost', async (req, res) => {
     try {
         if (!req.session.loggedIn) {
             res.redirect('/login')
