@@ -54,9 +54,18 @@ router.get('/dashboard', async (req, res) => {
 
         blogsData = blogs.map((blog) => 
             blog.get({ plain: true}))
+
+        const comments = await Comment.findAll({
+            where: { user_id: req.session.user_id },
+            include: [{ model: User}, { model: BlogPost }]
+        })
+
+        commentData = comments.map((data) => 
+            data.get({ plain: true}))
         
         res.render('dashboard', {
             blogsData,
+            commentData,
             loggedIn: req.session.loggedIn,
         })
         

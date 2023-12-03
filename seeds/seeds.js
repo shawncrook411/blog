@@ -50,6 +50,11 @@ const seedDatabase = async () => {
             title: 'test_title_5',
             text: 'test text area number 5',
         },
+        {
+            user_id: '4',
+            title: "shawn's title",
+            text: 'im bored'
+        }
     ])
 
     await Comment.bulkCreate([
@@ -58,6 +63,12 @@ const seedDatabase = async () => {
             user_id: '3',
             title: 'test_title_1',
             text: 'test text area number 1',
+        },
+        {
+            post_id: '6',
+            user_id: '1',
+            title: 'testing comment dashboard',
+            text: 'testing again....'
         },
         {
             post_id: '1',
@@ -83,6 +94,12 @@ const seedDatabase = async () => {
             title: 'test_title_5',
             text: 'test text area number 5',
         },
+        {
+            post_id: '2',
+            user_id: '4',
+            title: 'shawn"s comment',
+            text: 'shawn is commenting here',
+        }
     ])
 
     process.exit(0)

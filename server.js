@@ -44,8 +44,6 @@ sequelize.sync({ force: false }).then(() => {
 
 //TO DO
 
-//When seeing a post, show post creater's username
-//When seeing a comment, show the comment creater's username
 //Ensure that dashboard loads properly
 //check if new blog post works
 //Add delete option to dashboard
