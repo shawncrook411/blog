@@ -103,6 +103,25 @@ router.get('/blog/:id', async (req, res) => {
     }
 })
 
+router.get('/myBlog/:id', async (req, res) => {
+    try{
+        const blog = await BlogPost.findByPk(req.params.id)
+
+        if(!blog){
+
+        }
+        blogData = blog.get({ plain: true})
+
+        res.render('myPost', {
+            blogData,
+            loggedIn: req.session.loggedIn
+        })        
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
 //Dev Test Route
 router.get('/dashboardTest' , async (req, res) => {
     try{
@@ -269,6 +288,21 @@ router.post('/blog/:id/createComment', async (req, res) => {
         console.log(err)
         res.status(500).json(err)
     }
+})
+
+router.put('/myBlog/:id/updatePost', (req, res) => {
+    BlogPost.update(
+        {
+            title: req.body.title,
+            text: req.body.text,
+        },
+        {
+            where: { id: req.params.id },
+        }
+    )
+    .then((updatedPost) => {
+        res.json(updatedPost)
+    })
 })
 
 module.exports = router
