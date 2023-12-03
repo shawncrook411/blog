@@ -2,15 +2,19 @@
 <section class="blogpost border">
         <div class="blogpost_header">
             <h2 class="blogpost_title">{{title}}</h2>
-            <p>{{date}}</p>
+            <div>
+                <p>{{date}}</p>
+                <p>{{user.username}}
+            </div>
         </div>
         <div>
             <p>{{text}}</p>
         </div>
 </section>
-    {{#each comments as |comment|}}
-    {{> comment}}
-    {{/each}}
+{{/each}}
+
+{{#each commentData as |comment|}}
+{{> comment}}
 {{/each}}
 
 {{#if loggedIn}}

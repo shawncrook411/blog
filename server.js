@@ -51,3 +51,4 @@ sequelize.sync({ force: false }).then(() => {
 //Add delete option to dashboard
 //Add update option to dashboard
 //check idle time
+//Ensure consistant styling / sizing

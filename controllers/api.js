@@ -71,15 +71,23 @@ router.get('/blog/:id', async (req, res) => {
         const blog = await BlogPost.findAll({
             where: { id: req.params.id },
             include: [{ model: User}, { model: Comment }]
-        })
-
+        })        
         blogData = blog.map((post) =>
             post.get({ plain: true}))
+        
+        const comment = await Comment.findAll({
+            where: { post_id: req.params.id },
+            include: [{ model: User}, { model: BlogPost }]
+        })
+        commentData = comment.map((data) =>
+            data.get({ plain: true}))
 
         res.render('blogpost', {
             blogData,
+            commentData,
             loggedIn: req.session.loggedIn
         })
+
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
