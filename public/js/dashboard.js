@@ -9,3 +9,4 @@ commentAnchors.forEach(anchor => {
     id = anchor.getAttribute('data-id')
     anchor.setAttribute('href', `myComment/${id}`)
 })
+

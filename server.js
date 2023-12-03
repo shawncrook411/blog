@@ -44,7 +44,6 @@ sequelize.sync({ force: false }).then(() => {
 
 //TO DO
 
-//Add update option to comments
 //check if new blog post works
 //Add delete option to dashboard
 //check idle time

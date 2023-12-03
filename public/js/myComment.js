@@ -26,4 +26,23 @@ const update = async (event) => {
     }
 }
 
+const deleteData = async (event) => {
+    event.preventDefault()
+
+    const response = await fetch(`${document.location.pathname}/deleteComment`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
+    })
+
+    if (response.ok) {
+        console.log('Successfully deleted post')
+        document.location.replace('/dashboard')
+    } else {
+        alert('Delete Failure')
+    }
+}
+
+
 document.querySelector('#update-blog-form' ).addEventListener('submit', update) 
+document.querySelector('#delete-comment' ).addEventListener('click', deleteData) 
+

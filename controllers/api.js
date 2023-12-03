@@ -334,5 +334,25 @@ router.put('/myComment/:id/updateComment', (req, res) => {
     })
 })
 
+router.delete(`/myBlog/:id/deletePost`, (req, res) => {    
+    BlogPost.destroy({
+            where: { id: req.params.id },
+        },
+    )
+    .then((deletePost) => {
+        res.json(deletePost)
+    })
+})
+
+router.delete(`/myComment/:id/deleteComment`, (req, res) => {    
+    Comment.destroy({
+            where: { id: req.params.id },
+        },
+    )
+    .then((deletedComment) => {
+        res.json(deletedComment)
+    })
+})
+
 
 module.exports = router
