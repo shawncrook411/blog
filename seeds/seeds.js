@@ -7,19 +7,19 @@ const seedDatabase = async () => {
 
     await User.bulkCreate([
         {
-            username: 'test_user_1',
-            password: 'test1234'
+            username: 'BeeCaptain78',
+            password: '$2b$10$rjuel.qGXi60RSjTQuEUYu5FuwhZGUgKSVMcwYLPWEyWyixLGdJA2'
         },
         {
-            username: 'test_user_2',
-            password: 'test1234'
+            username: 'FireBox1829',
+            password: '$2b$10$rjuel.qGXi60RSjTQuEUYu5FuwhZGUgKSVMcwYLPWEyWyixLGdJA2'
         },
         {
-            username: 'test_user_3',
-            password: 'test1234'
+            username: 'AtlantisIsntReal',
+            password: '$2b$10$rjuel.qGXi60RSjTQuEUYu5FuwhZGUgKSVMcwYLPWEyWyixLGdJA2'
         },
         {
-            username: 'shawn',
+            username: 'Juneau7',
             password: '$2b$10$rjuel.qGXi60RSjTQuEUYu5FuwhZGUgKSVMcwYLPWEyWyixLGdJA2'
         }
     ])
@@ -27,33 +27,33 @@ const seedDatabase = async () => {
     await BlogPost.bulkCreate([
         {
             user_id: '1',
-            title: 'test_title_1',
-            text: 'test text area number 1',
+            title: 'Bees are declining!',
+            text: 'Oh no! Think of the Bees! What will we do!',
         },
         {
             user_id: '1',
-            title: 'test_title_2',
-            text: 'test text area number 2',
+            title: 'Save the bees!',
+            text: 'save the bees please, for we need the bees',
         },
         {
             user_id: '2',
-            title: 'test_title_3',
-            text: 'test text area number 3',
+            title: 'Matches',
+            text: 'I play with matches',
         },
         {
             user_id: '2',
-            title: 'test_title_4',
-            text: 'test text area number 4',
+            title: 'Out of matches',
+            text: 'I used all of my matches and have no more left',
         },
         {
             user_id: '3',
-            title: 'test_title_5',
-            text: 'test text area number 5',
+            title: 'Where?????',
+            text: 'If Atlantis is real, where is it? Why havent we found it...? ',
         },
         {
             user_id: '4',
-            title: "shawn's title",
-            text: 'im bored'
+            title: 'Juneau',
+            text: 'Juneau is the capitol of Alaska'
         }
     ])
 
@@ -61,44 +61,38 @@ const seedDatabase = async () => {
         {
             post_id: '1',
             user_id: '3',
-            title: 'test_title_1',
-            text: 'test text area number 1',
+            title: 'Sad!',
+            text: 'I dont know if theres anything we CAN do...',
         },
         {
             post_id: '6',
             user_id: '1',
-            title: 'testing comment dashboard',
-            text: 'testing again....'
+            title: 'Alaska?',
+            text: 'Does Alaska have bees? Does Juneau?'
         },
         {
             post_id: '1',
             user_id: '2',
-            title: 'test_title_2',
-            text: 'test text area number 2',
+            title: 'Did you know?',
+            text: 'Bees dont like smoke, sorry',
+        },
+        {
+            post_id: '2',
+            user_id: '1',
+            title: 'I dont know!',
+            text: 'I dont know how to help! I wish I did!',
         },
         {
             post_id: '2',
             user_id: '3',
-            title: 'test_title_3',
-            text: 'test text area number 3',
-        },
-        {
-            post_id: '2',
-            user_id: '1',
-            title: 'test_title_4',
-            text: 'test text area number 4',
+            title: 'How?',
+            text: 'How can I help??',
         },
         {
             post_id: '3',
             user_id: '1',
-            title: 'test_title_5',
-            text: 'test text area number 5',
-        },
-        {
-            post_id: '2',
-            user_id: '4',
-            title: 'shawn"s comment',
-            text: 'shawn is commenting here',
+            title: '???',
+            text: 'I dont think its real either?? Unless theyre hiding all the bees..?',
         }
     ])
 
